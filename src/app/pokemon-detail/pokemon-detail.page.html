@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pokemon?.name | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="pokemon" class="pokemon-card">
+    <img *ngIf="pokemon.sprites" [src]="pokemon.sprites.front_default" />
+    <ion-card-header>
+      <ion-card-title>{{ pokemon.name | titlecase }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Id na Pokedex:</strong> {{ pokemon.id }}</p>
+      <p><strong>Peso:</strong> {{ pokemon.height }}</p>
+      <p><strong>Altura:</strong> {{ pokemon.weight }}</p>
+      <p><strong>XP Base:</strong> {{ pokemon.base_experience }}</p>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-md="6">
+            <ion-card class="ability-card">
+              <ion-card-header>
+                <ion-card-title>Habilidades</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-chip *ngFor="let ability of pokemon.abilities">
+                  {{ ability.ability.name }}
+                </ion-chip>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          
+          <ion-col size="12" size-md="6">
+            <ion-card class="type-card">
+              <ion-card-header>
+                <ion-card-title>Tipos</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-chip *ngFor="let type of pokemon.types">
+                  {{ type.type.name }}
+                </ion-chip>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>
